@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portofolio</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="mainNavbar">
+    <div class="nav-left">
+      <!-- LOGO: default dulu, akan diganti lewat JS -->
+      <img src="assets/img/default-logo.png" id="logo" class="logo" />
+      <span id="displayName" class="display-name">Hi, Guest!</span>
+    </div>
+
+    <ul class="nav-center">
+      <li class="nav-item active"><a href="#home">Home</a></li>
+      <li class="nav-item"><a href="#about">About</a></li>
+      <li class="nav-item"><a href="#project">Project</a></li>
+      <li class="nav-item"><a href="#review">Review</a></li>
+      <li class="nav-item"><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right" id="authLinks">
+      <!-- default -->
+      <a href="register.html" class="nav-signup">Sign In</a>
+      <a href="login.html" class="nav-login">Login</a>
+    </div>
+  </header>
+
+  <!-- SECTION: HOME -->
+  <section id="home" class="intro">
+    <img src="assets/img/foto-ariel.jpg" alt="Foto Ariel" class="profile-pic" />
+    <h1 class="intro-text"><span id="typewriter-text"></span></h1>
+  </section>
+
+  <div class="glow" id="glow1" style="top:0; left:0;"></div>
+  <div class="glow" id="glow2" style="top:0; right:0;"></div>
+  <div class="glow" id="glow3" style="bottom:0; left:0;"></div>
+  <div class="glow" id="glow4" style="bottom:0; right:0;"></div>
+
+  <div class="floating-texts">
+    <span class="float-text" style="top: 30%; left: 20%;">Welcome</span>
+    <span class="float-text" style="top: 40%; left: 70%;">Haloo</span>
+    <span class="float-text" style="top: 60%; left: 25%;">Hii</span>
+    <span class="float-text" style="top: 55%; left: 75%;">Apa Kabar</span>
+  </div>
+
+  <section id="tech-logos" class="tech-logos-container">
+
+    <!-- 🔧 APPS -->
+    <h2 class="tech-row-title">🔧 Apps</h2>
+    <div class="tech-marquee" id="appsTrack">
+      <div class="tech-box"><img src="assets/LOGO/apps/vscode.png" alt="VSCode" /></div>
+      <div class="tech-box"><img src="assets/LOGO/apps/acode.png" alt="ACode" /></div>
+      <div class="tech-box"><img src="assets/LOGO/apps/chatgpt.png" alt="ChatGPT" /></div>
+      <div class="tech-box"><img src="assets/LOGO/apps/alightmotion.png" alt="AlightMotion" /></div>
+      <div class="tech-box"><img src="assets/LOGO/apps/mongodb-compass.png" alt="MongoDB Compass" /></div>
+      <div class="tech-box"><img src="assets/LOGO/apps/git.png" alt="GIT" /></div>
+      <div class="tech-box"><img src="assets/LOGO/apps/github.png" alt="GITHUB" /></div>
+    </div>
+
+    <!-- 💻 FRONTEND -->
+    <h2 class="tech-row-title">💻 Frontend</h2>
+    <div class="tech-marquee" id="frontendTrack">
+      <div class="tech-box"><img src="assets/LOGO/frontend/html.png" alt="HTML" /></div>
+      <div class="tech-box"><img src="assets/LOGO/frontend/css.png" alt="CSS" /></div>
+      <div class="tech-box"><img src="assets/LOGO/frontend/javascript.png" alt="JavaScript" /></div>
+      <div class="tech-box"><img src="assets/LOGO/frontend/tailwind.png" alt="Tailwind CSS" /></div>
+      <div class="tech-box">
+        <img src="assets/LOGO/frontend/react.png" alt="React" />
+        <span class="soon-tag">[ soon 😎 ]</span>
+      </div>
+    </div>
+
+    <!-- 🖥️ BACKEND -->
+    <h2 class="tech-row-title">🖥️ Backend</h2>
+    <div class="tech-marquee" id="backendTrack">
+      <div class="tech-box"><img src="assets/LOGO/backend/nodejs.png" alt="Node.js" /></div>
+      <div class="tech-box"><img src="assets/LOGO/backend/express.png" alt="Express.js" /></div>
+      <div class="tech-box"><img src="assets/LOGO/backend/mongodb.png" alt="MongoDB" /></div>
+      <div class="tech-box"><img src="assets/LOGO/backend/socket-io.png" alt="Socket.io" /></div>
+      <div class="tech-box"><img src="assets/LOGO/backend/jwt.png" alt="JWT Auth" /></div>
+  </section>
+
+  <section id="review" class="comments-container">
+    <h3 class="comments-title">Ulasan Pengunjung</h3>
+
+    <ul id="commentList" class="comment-list"></ul>
+
+    <form id="commentForm" class="comment-form">
+      <textarea id="commentInput" placeholder="Tulis komentar..." required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <div id="popupWarning" class="popup-overlay hidden">
+    <div class="popup-box">
+      <p>⚠️ Kamu harus login dulu untuk mengirim komentar!</p>
+      <div class="popup-actions">
+        <a href="login.html" class="popup-btn">Login Sekarang</a>
+        <button id="closePopup" class="popup-btn cancel">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="contact">
+    <h2>📬 Contact Developer</h2>
+
+    <!-- Sosial Media -->
+    <div class="social-icons">
+      <a href="https://tiktok.com/@rilss_ear1" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://instagram.com/rilss_ear1" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/RyuuMachida" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://t.me/rilss_ear1" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://wa.me/6283813660206" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:arielenvan@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <footer>
+      
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

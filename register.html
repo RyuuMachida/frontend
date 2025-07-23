@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background: url('assets/img/pexels-pixabay-35016.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+      width: 100%;
+      max-width: 380px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #a855f7;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(169, 85, 247, 0.342);
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .form-container input:focus {
+      outline: none;
+      border-color: #a855f7;
+      box-shadow: 0 0 8px #a855f7;
+    }
+
+    .privacy-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #bbb;
+      cursor: pointer;
+    }
+
+    .privacy-wrapper input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 5px;
+      height: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background-color: transparent;
+      border-radius: 4px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .privacy-wrapper input[type="checkbox"]:checked::after {
+      content: '✔';
+      color: #fff;
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #a855f7;
+      color: white;
+      font-weight: 500;
+      border: none;
+      border-radius: 999px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #9333ea;
+    }
+
+    .register-extra {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .register-extra a {
+      color: #a855f7;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .register-extra a:hover {
+      color: #c084fc;
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 45px;
+      top: 54%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: #bbb;
+      transition: color 0.3s ease;
+    }
+
+    .eye-icon:hover {
+      color: #fff;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .popup-box {
+      background-color: rgba(0, 0, 0, 0);
+      /* transparan kayak form login */
+      backdrop-filter: blur(10px);
+      /* blur kaca */
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: 12px;
+      max-width: 340px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+      animation: fadeIn 0.3s ease;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      /* konsisten sama form */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .popup-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .popup-btn {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .popup-btn:hover {
+      background-color: #9333ea;
+    }
+
+    .popup-btn.cancel {
+      background-color: #444;
+    }
+
+    .popup-btn.cancel:hover {
+      background-color: #666;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    p {
+      padding-top: 1%;
+      text-align: center;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Register</h2>
+    <form id="regForm" action="/register" method="POST">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <div>
+        <input type="password" id="regPassword" name="password" placeholder="Password" required />
+        <span id="togglePassword" class="eye-icon">👁️</span>
+      </div>
+      <label class="privacy-wrapper">
+        <input type="checkbox" id="privacyCheck" />
+        <span>Saya Menyetujui Kebijakan Privacy ✔</span>
+      </label>
+      <button type=" submit">Register</button>
+      <div class="register-extra">
+        <span>have account? <a href="login.html">Login Now!</a></span>
+      </div>
+
+    </form>
+  </div>
+
+  <div id="popupWarning" class="popup-overlay hidden">
+    <div class="popup-box">
+      <p>⚠️ Setujui Kebijakan Privacy WEB INII!</p>
+      <div class="popup-actions">
+        <button id="closePopup" class="popup-btn cancel">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const passwordInput = document.getElementById("regPassword");
+      const toggleIcon = document.getElementById("togglePassword");
+      const form = document.getElementById("regForm");
+      const checkbox = document.getElementById("privacyCheck");
+      const popup = document.getElementById("popupWarning");
+      const closePopup = document.getElementById("closePopup");
+
+      let isPopupOpen = false; // <- Tambahan flag
+
+      toggleIcon.addEventListener("click", () => {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        toggleIcon.textContent = isPassword ? "🙈" : "👁️";
+      });
+
+      form.addEventListener("submit", function (e) {
+        if (!checkbox.checked) {
+          e.preventDefault();
+
+          if (!isPopupOpen) {
+            popup.classList.remove("hidden");
+            isPopupOpen = true;
+          }
+        }
+      });
+
+      closePopup.addEventListener("click", function () {
+        popup.classList.add("hidden");
+        isPopupOpen = false;
+      });
+    });
+
+  </script>
+</body>
+
+</html>
